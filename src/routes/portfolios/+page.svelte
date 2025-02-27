@@ -1,7 +1,26 @@
 <script>
-    export let data;
-	let { portfolioItems } = data;
-    
+	import { onMount } from "svelte";
+
+	let portfolioItems = [];
+	const apiUrl = import.meta.env.VITE_FLASK_APP_URL;
+
+    async function fetchPortfolioItems() {
+        try {
+            const res = await fetch(`${apiUrl}/portfolios`);
+            if (!res.ok) throw new Error('Failed to fetch');
+
+            const data = await res.json();
+            portfolioItems = data.map((item) => ({
+                slug: item.slug,
+                image: item.images.length > 0 ? item.images[0].url : '/assets/placeholder.jpg',
+                title: item.title
+            }))
+        } catch (error) {
+            console.error('Error fetching portfolio data:', error);
+        }
+    }
+
+    onMount(fetchPortfolioItems);
 </script>
 
 <div class="max-w-8xl container mx-auto flex flex-col p-8">

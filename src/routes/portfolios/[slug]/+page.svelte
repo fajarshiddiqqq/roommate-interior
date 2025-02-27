@@ -70,6 +70,7 @@
 				{#if selectedMedia.url.endsWith('.mp4')}
 					<video class="max-h-[60vh] w-full cursor-pointer object-contain" controls>
 						<source src={selectedMedia.url} type="video/mp4" />
+						<track kind="captions" />
 						Your browser does not support the video tag.
 					</video>
 				{:else}
@@ -105,6 +106,7 @@
 						: 'border-transparent'}"
 					on:click={() => selectMedia(video)}
 				>
+					<track kind="captions" />
 					<source src={video.url} type="video/mp4" />
 				</video>
 			{/each}
@@ -122,6 +124,7 @@
 			{#if selectedMedia.url.endsWith('.mp4')}
 				<video class="max-h-[80vh] w-fit object-contain" controls>
 					<source src={selectedMedia.url} type="video/mp4" />
+					<track kind="captions" />
 					Your browser does not support the video tag.
 				</video>
 			{:else}
