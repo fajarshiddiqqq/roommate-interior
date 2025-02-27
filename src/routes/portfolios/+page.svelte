@@ -1,24 +1,7 @@
 <script>
-    let portfolioItems = [];
-
-    async function fetchPortfolioItems() {
-        try {
-            const res = await fetch('http://127.0.0.1:5000/portfolios');
-            if (!res.ok) throw new Error('Failed to fetch');
-
-            const data = await res.json();
-
-            portfolioItems = data.map((item) => ({
-                slug: item.slug,
-                image: item.images.length > 0 ? item.images[0].url : '/assets/placeholder.jpg', // Fallback image
-                title: item.title
-            }));
-        } catch (error) {
-            console.error('Error fetching portfolio data:', error);
-        }
-    }
-
-    fetchPortfolioItems();
+    export let data;
+	let { portfolioItems } = data;
+    
 </script>
 
 <div class="max-w-8xl container mx-auto flex flex-col p-8">
