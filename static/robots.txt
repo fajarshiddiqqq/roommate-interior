@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://roommate.fajarshiddiqqq.my.id/sitemap.xml
