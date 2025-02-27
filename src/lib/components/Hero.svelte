@@ -11,10 +11,10 @@
 		<div
 			class="sm:items-statrt z-10 flex h-full w-full flex-col justify-end space-y-4 p-8 text-white sm:p-12 xl:p-18"
 		>
-			<h1 class="text-4xl font-bold md:text-5xl">Design Your Dream Space</h1>
-			<p class="text-md max-w-md md:text-lg">
+			<h1 class="text-4xl font-bold md:text-5xl">Custom Interior Design & Furniture Production</h1>
+			<h2 class="text-md max-w-md md:text-lg">
 				Transform your home with modern, stylish, and functional interiors.
-			</p>
+			</h2>
 			<a
 				class="w-fit rounded-full bg-[#ED7D2B] px-5 py-3 text-sm font-bold text-white transition-transform hover:scale-102 md:text-base"
 				href="/portfolios">View Portofolio</a

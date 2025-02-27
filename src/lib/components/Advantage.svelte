@@ -50,7 +50,7 @@
 </script>
 
 <div id="advantage" class="mb-16 w-full rounded-lg bg-gray-100 p-8 pb-12">
-	<h3 class="mb-8 text-center text-3xl font-bold sm:text-4xl">Why Us?</h3>
+	<h2 class="mb-8 text-center text-3xl font-bold sm:text-4xl">Why Us?</h2>
 
 	<div class="container mx-auto flex max-w-6xl flex-col items-stretch gap-6 sm:flex-row">
 		<!-- Left Side: Color Box -->

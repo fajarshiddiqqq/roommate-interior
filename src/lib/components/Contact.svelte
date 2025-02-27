@@ -1,6 +1,6 @@
 <div class="mb-14 w-full bg-gray-100 p-8">
 	<div class="container mx-auto flex max-w-3xl flex-col items-center justify-center space-y-4">
-		<h3 class="text-3xl font-bold sm:text-4xl">Ready to elevate your space?</h3>
+		<h2 class="text-3xl font-bold sm:text-4xl">Ready to elevate your space?</h2>
 		<p class="text-center text-sm sm:text-md">
 			We will help you create a home that's a true reflection of your personal style and lifestyle.
 			Whether you're starting from scratch or just need a few finishing touches, we will make the

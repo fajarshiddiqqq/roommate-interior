@@ -2,12 +2,13 @@
 
 <div id="about" class="mb-16 w-full p-8">
 	<div class="container mx-auto flex max-w-2xl flex-col items-center space-y-4 text-center">
-		<h3 class="text-3xl font-bold sm:text-4xl">About Roommate</h3>
+		<h2 class="text-3xl font-bold sm:text-4xl">About Roommate</h2>
 		<div>
 			<img
 				src="/assets/owner-profile.jpg"
 				alt="owner profile"
 				class="h-40 w-40 rounded-full shadow-lg"
+				loading="lazy"
 			/>
 		</div>
 		<p class="text-md sm:text-lg">
