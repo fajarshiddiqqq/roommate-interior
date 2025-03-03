@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from 'svelte';
 	import '../app.css';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
@@ -8,7 +7,7 @@
 
 <div class="min-h-screen flex flex-col">
 	<Navbar />
-	<main class="flex-1">
+	<main class="flex-1 flex">
 		<slot />
 	</main>
 	<Footer />

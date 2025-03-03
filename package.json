@@ -1,5 +1,5 @@
 {
-	"name": "belajar",
+	"name": "roommate-interior",
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
@@ -17,7 +17,6 @@
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
 		"@sveltejs/adapter-auto": "^4.0.0",
-		"@sveltejs/adapter-vercel": "^5.6.3",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/vite": "^4.0.9",
@@ -34,5 +33,9 @@
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.0.0"
+	},
+	"dependencies": {
+		"@sveltejs/adapter-node": "^5.2.12",
+		"axios": "^1.8.1"
 	}
 }

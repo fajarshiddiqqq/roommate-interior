@@ -7,8 +7,5 @@ export async function load({ params, fetch }) {
 	}
 
 	const portfolio = await res.json();
-
-	return {
-		portfolio
-	};
+	return { portfolio };
 }

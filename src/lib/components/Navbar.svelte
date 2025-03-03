@@ -11,7 +11,7 @@
 >
 	<div class="flex w-full items-center justify-between py-4">
 		<!-- Logo -->
-		<div class="text-2xl font-bold">Roommate Interior.</div>
+		<a href="/" class="text-2xl font-bold">Roommate Interior.</a>
 
 		<!-- Action Button -->
 		<button
@@ -35,6 +35,9 @@
 				href="/"
 				class="rounded-md px-4 py-3 hover:relative hover:bg-gray-200/70 sm:py-2 sm:hover:bg-transparent sm:hover:before:absolute sm:hover:before:bottom-[2px] sm:hover:before:left-[50%] sm:hover:before:h-[2px] sm:hover:before:w-[50%] sm:hover:before:translate-x-[-50%] sm:hover:before:bg-[#ed7d2b] sm:hover:before:content-['']"
 				class:current={$page.url.pathname === '/'}
+				on:click={() => {
+					isOpen = !isOpen;
+				}}
 			>
 				Home
 			</a>
@@ -42,14 +45,21 @@
 				href="/portfolios"
 				class="rounded-md px-4 py-3 hover:relative hover:bg-gray-200/70 sm:py-2 sm:hover:bg-transparent sm:hover:before:absolute sm:hover:before:bottom-[2px] sm:hover:before:left-[50%] sm:hover:before:h-[2px] sm:hover:before:w-[50%] sm:hover:before:translate-x-[-50%] sm:hover:before:bg-[#ed7d2b] sm:hover:before:content-['']"
 				class:current={$page.url.pathname.startsWith('/portfolio')}
+				on:click={() => {
+					isOpen = !isOpen;
+				}}
 			>
 				Portfolio
 			</a>
 			<a
 				href="https://wa.me/+6281228659154?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services"
-				class="rounded-md px-4 py-3 font-semibold text-nowrap hover:bg-gray-200/70 sm:rounded-full sm:bg-[#ED7D2B] sm:py-2 sm:text-white sm:hover:bg-[#ED7D2B]/90"
-				target="_blank">Contact us</a
-			>
+				class="text-nowrap rounded-md px-4 py-3 font-semibold hover:bg-gray-200/70 sm:rounded-full sm:bg-[#ED7D2B] sm:py-2 sm:text-white sm:hover:bg-[#ED7D2B]/90"
+				target="_blank"
+				on:click={() => {
+					isOpen = !isOpen;
+				}}
+				>Contact us
+			</a>
 		</div>
 	</div>
 </nav>

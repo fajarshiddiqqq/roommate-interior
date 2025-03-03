@@ -1,38 +1,19 @@
 <script>
-	import { onMount } from "svelte";
-
-	let portfolioItems = [];
-	const apiUrl = import.meta.env.VITE_FLASK_APP_URL;
-
-    async function fetchPortfolioItems() {
-        try {
-            const res = await fetch(`${apiUrl}/portfolios`);
-            if (!res.ok) throw new Error('Failed to fetch');
-
-            const data = await res.json();
-            portfolioItems = data.map((item) => ({
-                slug: item.slug,
-                image: item.images.length > 0 ? item.images[0].url : '/assets/placeholder.jpg',
-                title: item.title
-            }))
-        } catch (error) {
-            console.error('Error fetching portfolio data:', error);
-        }
-    }
-
-    onMount(fetchPortfolioItems);
+    import GoTop from '$lib/components/GoTop.svelte';
+	export let data;
+	let { portfolioItems } = data;
 </script>
 
 <div class="max-w-8xl container mx-auto flex flex-col p-8">
 	<!-- banner -->
     <div class="container mx-auto max-w-7xl px-6 py-12">
-        <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="flex flex-col-reverse md:flex-row items-center gap-8">
             <!-- Featured Project Image -->
             <div class="w-full md:w-3/5">
                 <img 
                     src="/assets/hero.jpg" 
                     alt="Featured Project" 
-                    class="w-full h-[500px] object-cover rounded-2xl shadow-lg"
+                    class="w-full h-[300px] md:h-[500px] object-cover rounded-2xl shadow-lg"
                 />
             </div>
     
@@ -53,8 +34,8 @@
                 <a href={`/portfolios/${item.slug}`} class="relative group block overflow-hidden rounded-lg shadow-lg">
                     <!-- Image -->
                     <img 
-                        src={item.image} 
-                        alt={item.title} 
+                        src={item.images.find((img) => img.thumbnail)?.url || item.images[0].url} 
+                        alt={item.images.find((img) => img.thumbnail)?.alt || item.images[0].alt} 
                         class="w-full h-[300px] object-cover transition-all duration-100 group-hover:blur-md"
                     />
     
@@ -69,11 +50,11 @@
             <div class="flex flex-col items-center justify-center text-center bg-gray-100 rounded-lg shadow-lg p-8 min-h-[300px]">
                 <h3 class="text-2xl font-bold text-gray-800">The Next Project is Yours!</h3>
                 <p class="text-gray-600 mt-2">Let's bring your vision to life. Start your project today.</p>
-                <a href="https://wa.me/+6281228659154?text=Hello!%20I%20would%20like%20to%20start%20a%20project" target="_blank" class="mt-4 px-6 py-3 bg-[#ED7D2B] text-white font-semibold rounded-lg hover:bg-[#d66d24] transition">
+                <a href="https://wa.me/+6281228659154?text=Hello!%20I%20would%20like%20to%20start%20a%20project" target="_blank" class="mt-4 px-6 py-2 bg-[#ED7D2B] text-white font-semibold rounded-full hover:bg-[#ED7D2B]/90">
                     Contact Us
                 </a>
             </div>
         </div>
     </div>
-    
-</div>
+    <GoTop />
+</div> 

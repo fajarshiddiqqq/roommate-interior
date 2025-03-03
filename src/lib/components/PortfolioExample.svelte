@@ -1,31 +1,37 @@
-<script>
-	import { onMount } from "svelte";
+<script lang="ts">
+	type PortfolioImage = {
+		thumbnail: boolean;
+		file_name: string;
+		url: string;
+		alt: string;
+	};
 
-	let portfolioItems = [];
-	const apiUrl = import.meta.env.VITE_FLASK_APP_URL;
+	type PortfolioVideo = {
+		file_name: string;
+		url: string;
+		alt: string;
+	};
 
-	async function fetchPortfolioItems() {
-		try {
-			const res = await fetch(`${apiUrl}/portfolios-preview`);
-			if (!res.ok) throw new Error('Failed to fetch');
+	type PortfolioItem = {
+		id: number;
+		title: string;
+		slug: string;
+		description: string;
+		location: string;
+		date: string;
+		client: string;
+		category: string;
+		tags: string[];
+		images: PortfolioImage[];
+		videos: PortfolioVideo[];
+	};
 
-			const data = await res.json();
-			portfolioItems = data.map((item) => ({
-				slug: item.slug,
-				image: item.images.length > 0 ? item.images[0].url : null,
-				title: item.title
-			}));
-		} catch (error) {
-			console.error("Error fetching portfolio data:", error);
-		}
-	}
-
-	onMount(fetchPortfolioItems);
+	export let portfolioItems: PortfolioItem[] = [];
 </script>
 
 {#if portfolioItems.length === 0}
 	<!-- Loading state -->
-	<div class="flex items-center justify-center min-h-screen">
+	<div class="flex min-h-screen items-center justify-center">
 		<p>Loading...</p>
 	</div>
 {:else}
@@ -36,10 +42,14 @@
 				{#each portfolioItems as item}
 					<a
 						href={`/portfolios/${item.slug}`}
-						class="portfolio-item h-50 w-full rounded-xl transition-transform hover:scale-102 sm:min-h-72"
+						class="portfolio-item h-50 block w-full overflow-hidden rounded-xl transition-transform sm:min-h-72"
 					>
-						{#if item.image}
-							<img src={item.image} alt={item.title} class="h-full w-full rounded-xl object-cover" />
+						{#if item.images.length > 0}
+							<img
+								src={item.images.find((img) => img.thumbnail)?.url || item.images[0].url}
+								alt={item.images.find((img) => img.thumbnail)?.alt || item.images[0].alt}
+								class="h-full w-full rounded-xl object-cover"
+							/>
 						{:else}
 							<div class="flex h-full w-full items-center justify-center rounded-xl bg-gray-200">
 								No Image
@@ -47,19 +57,22 @@
 						{/if}
 					</a>
 				{/each}
-				<div class="flex h-50 items-center justify-center sm:min-h-72 relative overflow-hidden rounded-xl">
+				<div
+					class="h-50 relative flex items-center justify-center overflow-hidden rounded-xl sm:min-h-72"
+				>
 					{#if portfolioItems.length > 0}
 						<!-- Background Image -->
 						<div
-							class="absolute inset-0 bg-cover bg-center filter blur-md opacity-60"
-							style="background-image: url({portfolioItems[0].image});"
+							class="absolute inset-0 bg-cover bg-center opacity-60 blur-md filter"
+							style="background-image: url({portfolioItems[0].images.find((img) => img.thumbnail)
+								?.url || portfolioItems[0].images[0]?.url});"
 						></div>
 					{/if}
-				
+
 					<!-- Foreground Button -->
 					<a
 						href="/portfolios"
-						class="relative z-10 flex h-full w-full items-center justify-center rounded-xl  px-4 py-3 font-semibold text-nowrap text-lg transition-transform hover:scale-110 text-white bg-black/20"
+						class="relative z-10 flex h-full w-full items-center justify-center text-nowrap rounded-xl bg-black/15 px-4 py-3 text-lg font-semibold text-white transition-transform hover:scale-110"
 					>
 						See more
 					</a>
@@ -70,20 +83,14 @@
 {/if}
 
 <style>
-	.portfolio-item {
-		display: block;
-		width: 100%;
-		overflow: hidden;
-	}
-
 	.portfolio-item img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		transition: transform 0.3s ease-in-out;
+		transition: transform 0.1s ease-in-out;
 	}
 
 	.portfolio-item:hover img {
-		transform: scale(1.02);
+		transform: scale(1.03);
 	}
 </style>
